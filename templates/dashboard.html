@@ -2,73 +2,53 @@
 
 {% block content %}
 
-<h1 class="mb-4">
+<h1 class="mb-4">Dashboard</h1>
 
-TradeJournal Pro
+<div class="row g-4">
 
-</h1>
+    <div class="col-lg-3 col-md-6">
 
-<div class="row">
+        <div class="card p-4">
 
-    <div class="col-md-3">
+            <h6>Total Trades</h6>
 
-        <div class="card text-bg-primary mb-3">
-
-            <div class="card-body">
-
-                <h5>Total Trades</h5>
-
-                <h2>{{ total }}</h2>
-
-            </div>
+            <h2>{{ total }}</h2>
 
         </div>
 
     </div>
 
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6">
 
-        <div class="card text-bg-success mb-3">
+        <div class="card p-4">
 
-            <div class="card-body">
+            <h6>Winning Trades</h6>
 
-                <h5>Winning Trades</h5>
-
-                <h2>{{ wins }}</h2>
-
-            </div>
+            <h2>{{ wins }}</h2>
 
         </div>
 
     </div>
 
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6">
 
-        <div class="card text-bg-danger mb-3">
+        <div class="card p-4">
 
-            <div class="card-body">
+            <h6>Losing Trades</h6>
 
-                <h5>Losing Trades</h5>
-
-                <h2>{{ losses }}</h2>
-
-            </div>
+            <h2>{{ losses }}</h2>
 
         </div>
 
     </div>
 
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6">
 
-        <div class="card text-bg-warning mb-3">
+        <div class="card p-4">
 
-            <div class="card-body">
+            <h6>Win Rate</h6>
 
-                <h5>Win Rate</h5>
-
-                <h2>{{ win_rate }}%</h2>
-
-            </div>
+            <h2>{{ win_rate }}%</h2>
 
         </div>
 
@@ -76,115 +56,56 @@ TradeJournal Pro
 
 </div>
 
-<div class="row">
-
-    <div class="col-md-6">
-
-        <div class="card bg-dark border-light mb-3">
-
-            <div class="card-body">
-
-                <h5>📈 Most Traded Pair</h5>
-
-                <h3>{{ most_traded }}</h3>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-md-6">
-
-        <div class="card bg-dark border-light mb-3">
-
-            <div class="card-body">
-
-                <h5>🏆 Best Strategy</h5>
-
-                <h3>{{ best_strategy }}</h3>
-
-                <small>{{ best_strategy_rate }}% Win Rate</small>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<div class="row">
-
-    <div class="col-md-4">
-
-        <div class="card bg-dark border-light mb-3">
-
-            <div class="card-body">
-
-                <h5>🌍 Best Session</h5>
-
-                <h4>{{ best_session }}</h4>
-
-                <small>{{ best_session_rate }}%</small>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-md-4">
-
-        <div class="card bg-dark border-light mb-3">
-
-            <div class="card-body">
-
-                <h5>😨 Losing Emotion</h5>
-
-                <h4>{{ common_emotion }}</h4>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-md-4">
-
-        <div class="card bg-dark border-light mb-3">
-
-            <div class="card-body">
-
-                <h5>❌ Common Mistake</h5>
-
-                <h4>{{ common_mistake }}</h4>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
 <br>
 
-<a href="/add_trade" class="btn btn-success">
+<div class="row">
+
+<div class="col-lg-6">
+
+<div class="card p-4">
+
+<h4>Quick Analytics</h4>
+
+<hr>
+
+<p><strong>Most Traded Pair</strong><br>{{ most_traded }}</p>
+
+<p><strong>Best Strategy</strong><br>{{ best_strategy }} ({{ best_strategy_rate }}%)</p>
+
+<p><strong>Best Session</strong><br>{{ best_session }} ({{ best_session_rate }}%)</p>
+
+<p><strong>Losing Emotion</strong><br>{{ common_emotion }}</p>
+
+<p><strong>Most Common Mistake</strong><br>{{ common_mistake }}</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-6">
+
+<div class="card p-4">
+
+<h4>Quick Actions</h4>
+
+<hr>
+
+<a href="/add_trade" class="btn btn-success w-100 mb-3">
 
 ➕ Add Trade
 
 </a>
 
-<a href="/trades" class="btn btn-primary">
+<a href="/trades" class="btn btn-primary w-100">
 
 📋 View Trades
 
 </a>
 
-<a href="/logout" class="btn btn-danger">
+</div>
 
-Logout
+</div>
 
-</a>
+</div>
 
 {% endblock %}

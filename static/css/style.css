@@ -119,3 +119,46 @@ body{
     color:white;
 
 }
+h1{
+    font-weight:700;
+}
+
+.card{
+
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+}
+
+.card h2{
+
+    font-size:42px;
+
+    margin-top:10px;
+
+    color:#38BDF8;
+
+}
+
+.card h6{
+
+    color:#94A3B8;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+.card p{
+
+    font-size:17px;
+
+    line-height:1.8;
+
+}
+
+.card hr{
+
+    border-color:#334155;
+
+}
