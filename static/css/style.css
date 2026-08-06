@@ -177,3 +177,23 @@ h1{
     border-radius:8px;
 
 }
+.table{
+    background:#1E293B;
+    color:white;
+}
+
+.table thead th{
+    background:#111827;
+    color:#38BDF8;
+    border-color:#334155;
+}
+
+.table td{
+    background:#1E293B;
+    color:white;
+    border-color:#334155;
+}
+
+.table-hover tbody tr:hover{
+    background:#334155;
+}

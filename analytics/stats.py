@@ -81,7 +81,35 @@ def calculate_dashboard_stats(user_id):
             mistakes.append(trade.mistake)
 
     # -----------------------
+    # -----------------------
+# Financial Statistics
+# -----------------------
 
+    profits = [
+    t.profit_loss
+    for t in trades
+    if t.profit_loss is not None and t.profit_loss > 0
+    ]
+
+    loss_values = [
+        t.profit_loss
+        for t in trades
+        if t.profit_loss is not None and t.profit_loss < 0
+    ]
+
+    total_profit = round(
+        sum(t.profit_loss or 0 for t in trades),
+        2
+    )
+    
+    average_win = round(sum(profits) / len(profits), 2) if profits else 0
+
+    average_loss = round(sum(loss_values) / len(loss_values), 2) if loss_values else 0
+
+    largest_win = round(max(profits), 2) if profits else 0
+
+    largest_loss = round(min(loss_values), 2) if loss_values else 0
+    
     win_rate = round((wins / total) * 100, 2) if total else 0
 
     most_traded = symbols.most_common(1)[0][0] if symbols else "-"
@@ -173,6 +201,16 @@ def calculate_dashboard_stats(user_id):
         "common_emotion": common_emotion,
 
         "common_mistake": common_mistake,
+        
+        "total_profit": total_profit,
+
+        "average_win": average_win,
+
+        "average_loss": average_loss,
+
+        "largest_win": largest_win,
+
+        "largest_loss": largest_loss,
         
         "recent_trades": recent_trades
 

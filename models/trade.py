@@ -20,6 +20,12 @@ class Trade(db.Model):
     
     market = db.Column(db.String(20), default="Forex")
 
+    profit_loss = db.Column(db.Float, default=0)
+
+    commission = db.Column(db.Float, default=0)
+
+    risk = db.Column(db.Float, default=0)
+
     strategy = db.Column(db.String(50), default="")
 
     session = db.Column(db.String(30), default="")
