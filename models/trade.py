@@ -17,6 +17,8 @@ class Trade(db.Model):
     exit = db.Column(db.Float, nullable=False)
 
     lot = db.Column(db.Float, nullable=False)
+    
+    market = db.Column(db.String(20), default="Forex")
 
     strategy = db.Column(db.String(50), default="")
 

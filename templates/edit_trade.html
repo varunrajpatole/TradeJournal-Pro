@@ -85,6 +85,25 @@
             required>
 
     </div>
+    <div class="mb-3">
+
+    <label>Market</label>
+
+    <select name="market" class="form-control">
+
+        <option value="Forex" {% if trade.market=="Forex" %}selected{% endif %}>Forex</option>
+
+        <option value="Gold" {% if trade.market=="Gold" %}selected{% endif %}>Gold</option>
+
+        <option value="Crypto" {% if trade.market=="Crypto" %}selected{% endif %}>Crypto</option>
+
+        <option value="Indices" {% if trade.market=="Indices" %}selected{% endif %}>Indices</option>
+
+        <option value="Stocks" {% if trade.market=="Stocks" %}selected{% endif %}>Stocks</option>
+
+    </select>
+
+</div>
 
     <div class="mb-3">
 

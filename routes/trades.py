@@ -23,6 +23,7 @@ def add_trade():
     entry=float(request.form["entry"]),
     exit=float(request.form["exit"]),
     lot=float(request.form["lot"]),
+    market=request.form["market"],
 
     strategy=request.form["strategy"],
     session=request.form["session"],
@@ -76,9 +77,9 @@ def edit_trade(id):
         trade.direction = request.form["direction"]
         trade.entry = float(request.form["entry"])
         trade.exit = float(request.form["exit"])
-        trade.lot = float(request.form["lot"]
-
-        )
+        trade.lot = float(request.form["lot"])
+        trade.market = request.form["market"]
+        
 
         trade.strategy = request.form["strategy"]
         trade.session = request.form["session"]
