@@ -46,6 +46,19 @@ def add_trade():
 
     return render_template("add_trade.html")
 
+@trades_bp.route("/trade/<int:trade_id>")
+@login_required
+def trade_details(trade_id):
+
+    trade = Trade.query.filter_by(
+        id=trade_id,
+        user_id=current_user.id
+    ).first_or_404()
+
+    return render_template(
+        "trade_details.html",
+        trade=trade
+    )
 
 # -----------------------------
 # View Trades

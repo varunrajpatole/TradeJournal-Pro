@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">Trade Details</h1>
+
+<div class="card p-4">
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <h5>Trade Information</h5>
+            <hr>
+
+            <p><strong>Date:</strong> {{ trade.date }}</p>
+
+            <p><strong>Market:</strong> {{ trade.market }}</p>
+
+            <p><strong>Pair:</strong> {{ trade.symbol }}</p>
+
+            <p><strong>Direction:</strong> {{ trade.direction }}</p>
+
+            <p><strong>Entry:</strong> {{ trade.entry }}</p>
+
+            <p><strong>Exit:</strong> {{ trade.exit }}</p>
+
+            <p><strong>Lot Size:</strong> {{ trade.lot }}</p>
+
+            <p><strong>Profit/Loss:</strong>
+                {% if trade.profit_loss > 0 %}
+                    <span class="text-success">${{ trade.profit_loss }}</span>
+                {% elif trade.profit_loss < 0 %}
+                    <span class="text-danger">${{ trade.profit_loss }}</span>
+                {% else %}
+                    $0
+                {% endif %}
+            </p>
+
+            <p><strong>Commission:</strong> ${{ trade.commission }}</p>
+
+            <p><strong>Risk:</strong> ${{ trade.risk }}</p>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <h5>Trading Psychology</h5>
+            <hr>
+
+            <p><strong>Strategy:</strong> {{ trade.strategy }}</p>
+
+            <p><strong>Session:</strong> {{ trade.session }}</p>
+
+            <p><strong>Emotion:</strong> {{ trade.emotion }}</p>
+
+            <p><strong>Mistake:</strong> {{ trade.mistake }}</p>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h5>Trade Notes</h5>
+
+    <p>{{ trade.notes }}</p>
+
+    <hr>
+
+    <a href="/edit_trade/{{ trade.id }}" class="btn btn-warning">
+        ✏ Edit Trade
+    </a>
+
+    <a href="/trades" class="btn btn-secondary">
+        ← Back
+    </a>
+
+</div>
+
+{% endblock %}
