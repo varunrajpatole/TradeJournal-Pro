@@ -4,7 +4,7 @@
 
 <h2>Add Trade</h2>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 
     <div class="mb-3">
         <label>Date</label>
@@ -176,6 +176,30 @@
         </textarea>
 
     </div>
+
+<div class="mb-3">
+
+    <label>Before Entry Screenshot</label>
+
+    <input
+        type="file"
+        name="before_image"
+        class="form-control"
+        accept="image/*">
+
+</div>
+
+<div class="mb-3">
+
+    <label>After Exit Screenshot</label>
+
+    <input
+        type="file"
+        name="after_image"
+        class="form-control"
+        accept="image/*">
+
+</div>
 
     <button class="btn btn-success">
 

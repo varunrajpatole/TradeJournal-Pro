@@ -1,3 +1,4 @@
+from flask import send_from_directory
 from flask_migrate import Migrate
 from flask import Flask
 from config import Config
@@ -7,7 +8,11 @@ from routes.auth import auth
 from routes.dashboard import dashboard_bp
 from routes.trades import trades_bp
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_folder="static",
+    static_url_path="/static"
+)
 
 app.config.from_object(Config)
 
@@ -35,6 +40,12 @@ def home():
 
 with app.app_context():
     db.create_all()
+
+from flask import send_from_directory
+
+@app.route("/uploads/<filename>")
+def uploaded_file(filename):
+    return send_from_directory("uploads", filename)
 
 
 if __name__ == "__main__":

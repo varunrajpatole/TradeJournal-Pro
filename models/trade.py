@@ -35,5 +35,9 @@ class Trade(db.Model):
     mistake = db.Column(db.String(100), default="")
 
     notes = db.Column(db.Text)
+    
+    before_image = db.Column(db.String(255))
+
+    after_image = db.Column(db.String(255))
 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
