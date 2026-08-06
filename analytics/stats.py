@@ -139,7 +139,17 @@ def calculate_dashboard_stats(user_id):
         common_mistake = Counter(
             mistakes
         ).most_common(1)[0][0]
+    # -----------------------
+# Recent Trades
+# -----------------------
 
+    recent_trades = (
+        Trade.query
+        .filter_by(user_id=user_id)
+        .order_by(Trade.id.desc())
+        .limit(5)
+        .all()
+    )
     return {
 
         "total": total,
@@ -162,6 +172,8 @@ def calculate_dashboard_stats(user_id):
 
         "common_emotion": common_emotion,
 
-        "common_mistake": common_mistake
+        "common_mistake": common_mistake,
+        
+        "recent_trades": recent_trades
 
     }

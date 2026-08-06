@@ -162,3 +162,18 @@ h1{
     border-color:#334155;
 
 }
+.table-hover tbody tr:hover{
+
+    background:#293548;
+
+}
+
+.badge{
+
+    font-size:14px;
+
+    padding:8px 12px;
+
+    border-radius:8px;
+
+}
