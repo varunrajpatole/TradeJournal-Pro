@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Add Trade</h2>
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label>Date</label>
+        <input type="date" name="date" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Symbol</label>
+        <input type="text" name="symbol" class="form-control" placeholder="XAUUSD" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Direction</label>
+
+        <select name="direction" class="form-control">
+
+            <option>BUY</option>
+
+            <option>SELL</option>
+
+        </select>
+
+    </div>
+
+    <div class="mb-3">
+        <label>Entry Price</label>
+        <input type="number" step="0.01" name="entry" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Exit Price</label>
+        <input type="number" step="0.01" name="exit" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Lot Size</label>
+        <input type="number" step="0.01" name="lot" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+    <label>Strategy</label>
+
+    <select name="strategy" class="form-control">
+
+        <option>ICT</option>
+        <option>SMC</option>
+        <option>Breakout</option>
+        <option>Scalping</option>
+        <option>Swing</option>
+
+    </select>
+
+</div>
+
+<div class="mb-3">
+
+    <label>Session</label>
+
+    <select name="session" class="form-control">
+
+        <option>Asia</option>
+        <option>London</option>
+        <option>New York</option>
+
+    </select>
+
+</div>
+
+<div class="mb-3">
+
+    <label>Emotion</label>
+
+    <select name="emotion" class="form-control">
+
+        <option>Calm</option>
+        <option>Confident</option>
+        <option>Fear</option>
+        <option>FOMO</option>
+        <option>Revenge</option>
+        <option>Greedy</option>
+
+    </select>
+
+</div>
+
+<div class="mb-3">
+
+    <label>Mistake</label>
+
+    <select name="mistake" class="form-control">
+
+        <option>None</option>
+        <option>Early Exit</option>
+        <option>Late Entry</option>
+        <option>No Stop Loss</option>
+        <option>Overtrading</option>
+        <option>Revenge Trade</option>
+        <option>FOMO Entry</option>
+
+    </select>
+
+</div>
+
+    <div class="mb-3">
+        <label>Notes</label>
+
+        <textarea
+            name="notes"
+            class="form-control"
+            rows="4">
+        </textarea>
+
+    </div>
+
+    <button class="btn btn-success">
+
+        Save Trade
+
+    </button>
+
+</form>
+
+<br>
+
+<a href="/dashboard" class="btn btn-secondary">
+
+Back
+
+</a>
+
+{% endblock %}

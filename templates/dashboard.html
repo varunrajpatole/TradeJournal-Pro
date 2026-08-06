@@ -1,20 +1,185 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
 
-<h1>
+<h1 class="mb-4">
 
-Welcome {{user.username}}
+TradeJournal Pro
 
 </h1>
 
-<hr>
+<div class="row">
 
-<h3>
+    <div class="col-md-3">
 
-TradeJournal Pro Dashboard
+        <div class="card text-bg-primary mb-3">
 
-</h3>
+            <div class="card-body">
+
+                <h5>Total Trades</h5>
+
+                <h2>{{ total }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card text-bg-success mb-3">
+
+            <div class="card-body">
+
+                <h5>Winning Trades</h5>
+
+                <h2>{{ wins }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card text-bg-danger mb-3">
+
+            <div class="card-body">
+
+                <h5>Losing Trades</h5>
+
+                <h2>{{ losses }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card text-bg-warning mb-3">
+
+            <div class="card-body">
+
+                <h5>Win Rate</h5>
+
+                <h2>{{ win_rate }}%</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="card bg-dark border-light mb-3">
+
+            <div class="card-body">
+
+                <h5>📈 Most Traded Pair</h5>
+
+                <h3>{{ most_traded }}</h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card bg-dark border-light mb-3">
+
+            <div class="card-body">
+
+                <h5>🏆 Best Strategy</h5>
+
+                <h3>{{ best_strategy }}</h3>
+
+                <small>{{ best_strategy_rate }}% Win Rate</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <div class="card bg-dark border-light mb-3">
+
+            <div class="card-body">
+
+                <h5>🌍 Best Session</h5>
+
+                <h4>{{ best_session }}</h4>
+
+                <small>{{ best_session_rate }}%</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card bg-dark border-light mb-3">
+
+            <div class="card-body">
+
+                <h5>😨 Losing Emotion</h5>
+
+                <h4>{{ common_emotion }}</h4>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card bg-dark border-light mb-3">
+
+            <div class="card-body">
+
+                <h5>❌ Common Mistake</h5>
+
+                <h4>{{ common_mistake }}</h4>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<br>
+
+<a href="/add_trade" class="btn btn-success">
+
+➕ Add Trade
+
+</a>
+
+<a href="/trades" class="btn btn-primary">
+
+📋 View Trades
+
+</a>
 
 <a href="/logout" class="btn btn-danger">
 
