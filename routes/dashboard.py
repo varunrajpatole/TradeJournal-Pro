@@ -84,3 +84,8 @@ def calendar_view():
         trades_by_day=trades_by_day
     )
     
+@dashboard_bp.route("/settings")
+@login_required
+def settings():
+
+    return render_template("settings.html")
