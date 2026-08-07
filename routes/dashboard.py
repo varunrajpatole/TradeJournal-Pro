@@ -2,6 +2,8 @@ from flask import Blueprint, render_template
 from flask_login import login_required, current_user
 
 from analytics.stats import calculate_dashboard_stats
+import calendar
+from collections import defaultdict
 
 dashboard_bp = Blueprint("dashboard", __name__)
 
@@ -28,3 +30,10 @@ def analytics():
         "analytics.html",
         **stats
     )
+    
+@dashboard_bp.route("/calendar")
+@login_required
+def calendar_view():
+
+    return render_template("calendar.html")
+    
