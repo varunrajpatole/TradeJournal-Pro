@@ -80,7 +80,7 @@ def calendar_view():
         calendar_data=cal,
         month_name=calendar.month_name[month],
         year=year,
-        daily_profit=daily_profit
-        trades_by_day=trades_by_day,
+        daily_profit=daily_profit,
+        trades_by_day=trades_by_day
     )
     
