@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h1>
+            📊 Analytics Dashboard
+        </h1>
+
+        <p class="text-secondary mb-0">
+            Analyze your trading performance.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="row g-4">
+
+    <!-- Win / Loss Chart -->
+
+    <div class="col-lg-6">
+
+        <div class="card p-4 h-100">
+
+            <h4 class="mb-4">
+
+                🥧 Win / Loss Ratio
+
+            </h4>
+
+            <div style="height:320px;">
+
+                <canvas id="pieChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Strategy Performance -->
+
+    <div class="col-lg-6">
+
+        <div class="card p-4 h-100">
+
+            <h4 class="mb-4">
+
+                📊 Strategy Performance
+
+            </h4>
+
+            <div style="height:320px;">
+
+                <canvas id="strategyChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // ============================
+    // WIN / LOSS CHART
+    // ============================
+
+    const pieCanvas = document.getElementById("pieChart");
+
+    if (pieCanvas) {
+
+        new Chart(pieCanvas, {
+
+            type: "doughnut",
+
+            data: {
+
+                labels: {{ pie_labels | tojson }},
+
+                datasets: [{
+
+                    data: {{ pie_data | tojson }},
+
+                    backgroundColor: [
+
+                        "#22C55E",
+
+                        "#EF4444"
+
+                    ],
+
+                    borderColor: "#1E293B",
+
+                    borderWidth: 3
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                cutout: "70%",
+
+                plugins: {
+
+                    legend: {
+
+                        position: "bottom",
+
+                        labels: {
+
+                            color: "#ffffff",
+
+                            padding: 20,
+
+                            font: {
+
+                                size: 14
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    }
+
+    // ============================
+    // STRATEGY PERFORMANCE
+    // ============================
+
+    const strategyCanvas = document.getElementById("strategyChart");
+
+    if (strategyCanvas) {
+
+        new Chart(strategyCanvas, {
+
+            type: "bar",
+
+            data: {
+
+                labels: {{ strategy_labels | tojson }},
+
+                datasets: [{
+
+                    label: "Win Rate (%)",
+
+                    data: {{ strategy_rates | tojson }},
+
+                    backgroundColor: "#3B82F6",
+
+                    borderRadius: 8,
+
+                    borderSkipped: false
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                indexAxis: "y",
+
+                scales: {
+
+                    x: {
+
+                        beginAtZero: true,
+
+                        max: 100,
+
+                        ticks: {
+
+                            color: "#CBD5E1",
+
+                            callback: function(value) {
+
+                                return value + "%";
+
+                            }
+
+                        },
+
+                        grid: {
+
+                            color: "#334155"
+
+                        }
+
+                    },
+
+                    y: {
+
+                        ticks: {
+
+                            color: "#CBD5E1"
+
+                        },
+
+                        grid: {
+
+                            display: false
+
+                        }
+
+                    }
+
+                },
+
+                plugins: {
+
+                    legend: {
+
+                        display: false
+
+                    },
+
+                    tooltip: {
+
+                        callbacks: {
+
+                            label: function(context) {
+
+                                return context.raw + "% Win Rate";
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    }
+    // ============================
+    // END OF CHARTS
+    // ============================
+
+});
+
+</script>
+
+{% endblock %}

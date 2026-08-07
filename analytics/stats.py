@@ -178,6 +178,23 @@ def calculate_dashboard_stats(user_id):
         .limit(5)
         .all()
     )
+    # -----------------------
+# Strategy Chart Data
+# -----------------------
+
+    strategy_labels = []
+    strategy_rates = []
+
+    for strategy, data in strategy_stats.items():
+
+        strategy_labels.append(strategy)
+
+        rate = round(
+            (data["wins"] / data["total"]) * 100,
+            2
+        )
+
+        strategy_rates.append(rate)
     return {
 
         "total": total,
@@ -212,6 +229,11 @@ def calculate_dashboard_stats(user_id):
 
         "largest_loss": largest_loss,
         
-        "recent_trades": recent_trades
+        "recent_trades": recent_trades,
+        
+        "pie_labels": ["Wins", "Losses"],
+        "pie_data": [wins, losses],
 
+        "strategy_labels": strategy_labels,
+        "strategy_rates": strategy_rates,
     }

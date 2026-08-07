@@ -17,3 +17,14 @@ def dashboard():
         user=current_user,
         **stats
     )
+    
+@dashboard_bp.route("/analytics")
+@login_required
+def analytics():
+
+    stats = calculate_dashboard_stats(current_user.id)
+
+    return render_template(
+        "analytics.html",
+        **stats
+    )
