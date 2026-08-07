@@ -195,6 +195,23 @@ def calculate_dashboard_stats(user_id):
         )
 
         strategy_rates.append(rate)
+    # -----------------------
+    # Session Chart Data
+    # -----------------------
+
+    session_labels = []
+    session_rates = []
+
+    for session, data in session_stats.items():
+
+        session_labels.append(session)
+
+        rate = round(
+            (data["wins"] / data["total"]) * 100,
+            2
+        )
+
+        session_rates.append(rate)
     return {
 
         "total": total,
@@ -236,4 +253,7 @@ def calculate_dashboard_stats(user_id):
 
         "strategy_labels": strategy_labels,
         "strategy_rates": strategy_rates,
+        
+        "session_labels": session_labels,
+        "session_rates": session_rates,
     }

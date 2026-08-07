@@ -65,6 +65,27 @@
     </div>
 
 </div>
+<div class="row g-4 mt-1">
+
+    <div class="col-lg-6">
+
+        <div class="card p-4">
+
+            <h4 class="mb-4">
+                🕒 Session Performance
+            </h4>
+
+            <div style="height:320px;">
+
+                <canvas id="sessionChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script>
 
@@ -259,6 +280,101 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
+    // ============================
+// SESSION PERFORMANCE
+// ============================
+
+const sessionCanvas = document.getElementById("sessionChart");
+
+if (sessionCanvas) {
+
+    new Chart(sessionCanvas, {
+
+        type: "bar",
+
+        data: {
+
+            labels: {{ session_labels | tojson }},
+
+            datasets: [{
+
+                label: "Win Rate (%)",
+
+                data: {{ session_rates | tojson }},
+
+                backgroundColor: "#8B5CF6",
+
+                borderRadius: 8
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            indexAxis: "y",
+
+            plugins: {
+
+                legend: {
+
+                    display: false
+
+                }
+
+            },
+
+            scales: {
+
+                x: {
+
+                    beginAtZero: true,
+
+                    max: 100,
+
+                    ticks: {
+
+                        color: "#CBD5E1",
+
+                        callback: value => value + "%"
+
+                    },
+
+                    grid: {
+
+                        color: "#334155"
+
+                    }
+
+                },
+
+                y: {
+
+                    ticks: {
+
+                        color: "#CBD5E1"
+
+                    },
+
+                    grid: {
+
+                        display: false
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
     // ============================
     // END OF CHARTS
     // ============================
