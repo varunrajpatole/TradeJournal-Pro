@@ -2,23 +2,106 @@
 
 {% block content %}
 
-<h1 class="mb-4">
-    📅 Trading Calendar
-</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-<div class="card p-5 text-center">
+    <h1>
+        📅 {{ month_name }} {{ year }}
+    </h1>
 
-    <h3>
+</div>
 
-        Coming in Phase 2...
+<div class="card p-4">
 
-    </h3>
+    <table class="table table-bordered text-center align-middle calendar-table">
 
-    <p class="text-secondary">
+        <thead>
 
-        Your trading calendar will appear here.
+            <tr>
 
-    </p>
+                <th>Mon</th>
+
+                <th>Tue</th>
+
+                <th>Wed</th>
+
+                <th>Thu</th>
+
+                <th>Fri</th>
+
+                <th>Sat</th>
+
+                <th>Sun</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for week in calendar_data %}
+
+            <tr>
+
+            {% for day in week %}
+
+                {% if day == 0 %}
+
+                    <td class="calendar-empty"></td>
+
+                {% else %}
+
+<td class="
+    calendar-day
+    {% if day in daily_profit %}
+        {% if daily_profit[day] > 0 %}
+            calendar-profit
+        {% elif daily_profit[day] < 0 %}
+            calendar-loss
+        {% else %}
+            calendar-neutral
+        {% endif %}
+    {% endif %}
+">
+
+    <div class="fw-bold">
+        {{ day }}
+    </div>
+
+    {% if day in daily_profit %}
+
+        <small>
+
+            {% if daily_profit[day] > 0 %}
+
+                +${{ "%.2f"|format(daily_profit[day]) }}
+
+            {% elif daily_profit[day] < 0 %}
+
+                ${{ "%.2f"|format(daily_profit[day]) }}
+
+            {% else %}
+
+                $0.00
+
+            {% endif %}
+
+        </small>
+
+    {% endif %}
+
+</td>
+
+{% endif %}
+
+            {% endfor %}
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
 
 </div>
 

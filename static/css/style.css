@@ -558,3 +558,68 @@ img:hover{
     height:320px;
 
 }
+/* ==========================
+   Trading Calendar
+========================== */
+
+.calendar-table {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 8px;
+}
+
+.calendar-table th {
+    border: none;
+    color: #94A3B8;
+    font-weight: 600;
+    padding: 15px;
+    background: transparent;
+}
+
+.calendar-table td {
+    border: none;
+}
+
+.calendar-day {
+    background: #1E293B;
+    color: white !important; 
+    height: 95px;
+    vertical-align: top !important;
+    padding: 12px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: .25s;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.calendar-day:hover {
+    transform: translateY(-4px);
+    background: #334155;
+    box-shadow: 0 8px 20px rgba(0,0,0,.35);
+}
+
+.calendar-empty {
+    background: transparent !important;
+}
+
+.calendar-profit{
+    background: linear-gradient(135deg,#16A34A,#22C55E) !important;
+    color:white;
+}
+
+.calendar-loss{
+    background: linear-gradient(135deg,#DC2626,#EF4444) !important;
+    color:white;
+}
+
+.calendar-neutral{
+    background:#475569 !important;
+    color:white;
+}
+.calendar-day small{
+    display:block;
+    margin-top:8px;
+    font-size:13px;
+    opacity:.9;
+}
