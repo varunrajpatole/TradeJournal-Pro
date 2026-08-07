@@ -3,6 +3,107 @@
 {% block content %}
 
 <h2>My Trades</h2>
+<form method="GET" class="row g-3 mb-4">
+
+    <div class="col-md-3">
+
+        <input
+            type="text"
+            name="symbol"
+            class="form-control"
+            placeholder="Pair (EURUSD)"
+            value="{{ request.args.get('symbol','') }}">
+
+    </div>
+
+    <div class="col-md-2">
+
+        <select
+            name="market"
+            class="form-select">
+
+            <option value="">All Markets</option>
+
+            <option value="Forex"
+            {% if request.args.get('market')=="Forex" %}selected{% endif %}>
+                Forex
+            </option>
+
+            <option value="Gold"
+            {% if request.args.get('market')=="Gold" %}selected{% endif %}>
+                Gold
+            </option>
+
+            <option value="Crypto"
+            {% if request.args.get('market')=="Crypto" %}selected{% endif %}>
+                Crypto
+            </option>
+
+            <option value="Indices"
+            {% if request.args.get('market')=="Indices" %}selected{% endif %}>
+                Indices
+            </option>
+
+            <option value="Stocks"
+            {% if request.args.get('market')=="Stocks" %}selected{% endif %}>
+                Stocks
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="col-md-2">
+
+        <input
+            type="text"
+            name="strategy"
+            class="form-control"
+            placeholder="Strategy"
+            value="{{ request.args.get('strategy','') }}">
+
+    </div>
+
+    <div class="col-md-2">
+
+        <select
+            name="session"
+            class="form-select">
+
+            <option value="">All Sessions</option>
+
+            <option value="Asia"
+            {% if request.args.get('session')=="Asia" %}selected{% endif %}>
+                Asia
+            </option>
+            <option value="London"
+            {% if request.args.get('session')=="London" %}selected{% endif %}>
+                London
+            </option>
+            <option value="New York"
+            {% if request.args.get('session')=="Newyork" %}selected{% endif %}>
+                New York
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="col-md-3 d-grid">
+
+        <button class="btn btn-primary">
+
+            🔍 Apply Filters
+
+        </button>
+        <a href="/trades" class="btn btn-secondary mt-2">
+
+            ❌ Reset Filters
+
+        </a>
+    </div>
+
+</form>
 
 <table class="table table-dark table-striped">
 

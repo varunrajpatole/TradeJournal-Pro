@@ -130,17 +130,44 @@ def trade_details(trade_id):
 @login_required
 def trade_list():
 
-    trades = (
-        Trade.query
-        .filter_by(user_id=current_user.id)
+    query = Trade.query.filter_by(user_id=current_user.id)
+
+    # -----------------------
+    # Filters
+    # -----------------------
+
+    symbol = request.args.get("symbol")
+    market = request.args.get("market")
+    strategy = request.args.get("strategy")
+    session = request.args.get("session")
+
+    if symbol:
+        query = query.filter_by(symbol=symbol)
+
+    if market:
+        query = query.filter_by(market=market)
+
+    if strategy:
+        query = query.filter_by(strategy=strategy)
+
+    if session:
+        query = query.filter_by(session=session)
+
+    page = request.args.get("page", 1, type=int)
+
+    pagination = (
+        query
         .order_by(Trade.date.desc())
-        .all()
+        .paginate(page=page, per_page=10)
     )
 
+    trades = pagination.items
+
     return render_template(
-        "trades.html",
-        trades=trades
-    )
+    "trades.html",
+    trades=trades,
+    pagination=pagination
+    )   
 # ==========================================================
 # EDIT TRADE
 # ==========================================================

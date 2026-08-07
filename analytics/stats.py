@@ -182,6 +182,28 @@ def calculate_dashboard_stats(user_id):
         .limit(5)
         .all()
     )
+    equity_curve = []
+    equity_dates = []
+    starting_balance = 10000   # Change later from Settings page
+
+    balance = starting_balance
+
+    all_trades = (
+        Trade.query
+        .filter_by(user_id=user_id)
+        .order_by(Trade.id.asc())
+        .all()
+    )
+
+    for trade in all_trades:
+
+        balance += trade.profit_loss or 0
+
+        equity_curve.append(round(balance,2))
+        
+        equity_dates.append(trade.date)
+        
+    current_equity = balance
     # -----------------------
 # Strategy Chart Data
 # -----------------------
@@ -281,4 +303,7 @@ def calculate_dashboard_stats(user_id):
         "mistake_labels":mistake_labels,
 
         "mistake_counts":mistake_counts,
+        "equity_curve": equity_curve,
+        "equity_dates": equity_dates,
+        "current_equity": current_equity,
     }
