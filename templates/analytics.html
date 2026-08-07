@@ -2,29 +2,25 @@
 
 {% block content %}
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="mb-5">
 
-    <div>
+    <h1>
+        📊 Analytics Dashboard
+    </h1>
 
-        <h1>
-            📊 Analytics Dashboard
-        </h1>
-
-        <p class="text-secondary mb-0">
-            Analyze your trading performance.
-        </p>
-
-    </div>
+    <p class="text-secondary mb-0">
+        Analyze your trading performance.
+    </p>
 
 </div>
 
 <div class="row g-4">
 
-    <!-- Win / Loss Chart -->
+    <!-- Win / Loss -->
 
     <div class="col-lg-6">
 
-        <div class="card p-4 h-100">
+        <div class="card analytics-card p-4 h-100">
 
             <h4 class="mb-4">
 
@@ -32,7 +28,7 @@
 
             </h4>
 
-            <div style="height:320px;">
+            <div class="chart-container">
 
                 <canvas id="pieChart"></canvas>
 
@@ -42,11 +38,11 @@
 
     </div>
 
-    <!-- Strategy Performance -->
+    <!-- Strategy -->
 
     <div class="col-lg-6">
 
-        <div class="card p-4 h-100">
+        <div class="card analytics-card p-4 h-100">
 
             <h4 class="mb-4">
 
@@ -54,7 +50,7 @@
 
             </h4>
 
-            <div style="height:320px;">
+            <div class="chart-container">
 
                 <canvas id="strategyChart"></canvas>
 
@@ -63,21 +59,87 @@
         </div>
 
     </div>
-
-</div>
-<div class="row g-4 mt-1">
+    <!-- Session -->
 
     <div class="col-lg-6">
 
-        <div class="card p-4">
+        <div class="card analytics-card p-4 h-100">
 
             <h4 class="mb-4">
+
                 🕒 Session Performance
+
             </h4>
 
-            <div style="height:320px;">
+            <div class="chart-container">
 
                 <canvas id="sessionChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Market -->
+
+    <div class="col-lg-6">
+
+        <div class="card analytics-card p-4 h-100">
+
+            <h4 class="mb-4">
+
+                🌍 Market Distribution
+
+            </h4>
+
+            <div class="chart-container">
+
+                <canvas id="marketChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Emotion -->
+
+    <div class="col-lg-6">
+
+        <div class="card analytics-card p-4 h-100">
+
+            <h4 class="mb-4">
+
+                😊 Emotion Analysis
+
+            </h4>
+
+            <div class="chart-container">
+
+                <canvas id="emotionChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Mistake -->
+
+    <div class="col-lg-6">
+
+        <div class="card analytics-card p-4 h-100">
+
+            <h4 class="mb-4">
+
+                ❌ Mistake Analysis
+
+            </h4>
+
+            <div class="chart-container">
+
+                <canvas id="mistakeChart"></canvas>
 
             </div>
 
@@ -375,6 +437,77 @@ if (sessionCanvas) {
     });
 
 }
+const marketCanvas = document.getElementById("marketChart");
+
+if (marketCanvas){
+
+new Chart(marketCanvas,{
+
+type:"pie",
+
+data:{
+
+labels:{{ market_labels|tojson }},
+
+datasets:[{
+
+data:{{ market_counts|tojson }},
+
+backgroundColor:[
+"#3B82F6",
+"#22C55E",
+"#F59E0B",
+"#EF4444",
+"#8B5CF6"
+]
+
+}]
+
+}
+
+});
+
+}
+new Chart(document.getElementById("emotionChart"),{
+
+type:"bar",
+
+data:{
+
+labels:{{ emotion_labels|tojson }},
+
+datasets:[{
+
+label: "Losing Trades",
+data:{{ emotion_counts|tojson }},
+
+backgroundColor:"#EC4899"
+
+}]
+
+}
+
+});
+
+new Chart(document.getElementById("mistakeChart"),{
+
+type:"bar",
+
+data:{
+
+labels:{{ mistake_labels|tojson }},
+
+datasets:[{
+label: "Mistakes",
+data:{{ mistake_counts|tojson }},
+
+backgroundColor:"#EF4444"
+
+}]
+
+}
+
+});
     // ============================
     // END OF CHARTS
     // ============================

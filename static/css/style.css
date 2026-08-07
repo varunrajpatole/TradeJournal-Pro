@@ -531,3 +531,30 @@ img:hover{
     color:white;
 
 }
+.analytics-card{
+
+    height:100%;
+
+    border-radius:22px;
+
+    background:#1E293B;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+
+    transition:.3s;
+
+}
+
+.analytics-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.chart-container{
+
+    position:relative;
+
+    height:320px;
+
+}

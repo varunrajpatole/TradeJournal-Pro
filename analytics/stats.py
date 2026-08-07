@@ -13,6 +13,7 @@ def calculate_dashboard_stats(user_id):
     losses = 0
 
     symbols = Counter()
+    market_counter = Counter()
 
     strategy_stats = {}
 
@@ -39,6 +40,9 @@ def calculate_dashboard_stats(user_id):
         # Pair
 
         symbols[trade.symbol] += 1
+        market = trade.market or "Unknown"
+
+        market_counter[market] += 1
 
         # Strategy
 
@@ -212,6 +216,19 @@ def calculate_dashboard_stats(user_id):
         )
 
         session_rates.append(rate)
+        
+    market_labels = list(market_counter.keys())
+    market_counts = list(market_counter.values())
+    emotion_counter = Counter(losing_emotions)
+
+    emotion_labels = list(emotion_counter.keys())
+
+    emotion_counts = list(emotion_counter.values())
+    mistake_counter=Counter(mistakes)
+
+    mistake_labels=list(mistake_counter.keys())
+
+    mistake_counts=list(mistake_counter.values())
     return {
 
         "total": total,
@@ -256,4 +273,12 @@ def calculate_dashboard_stats(user_id):
         
         "session_labels": session_labels,
         "session_rates": session_rates,
+        "market_labels": market_labels,
+        "market_counts": market_counts,
+        "emotion_labels":emotion_labels,
+
+        "emotion_counts":emotion_counts,
+        "mistake_labels":mistake_labels,
+
+        "mistake_counts":mistake_counts,
     }
