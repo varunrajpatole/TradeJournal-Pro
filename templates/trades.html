@@ -188,6 +188,62 @@ onclick="return confirm('Delete this trade?')">
 </tbody>
 
 </table>
+<nav class="mt-4">
+
+    <ul class="pagination justify-content-center">
+
+        {% if pagination.has_prev %}
+
+        <li class="page-item">
+
+            <a class="page-link"
+               href="{{ url_for('trades.trade_list', page=pagination.prev_num, symbol=request.args.get('symbol'), market=request.args.get('market'), strategy=request.args.get('strategy'), session=request.args.get('session')) }}">
+
+                ← Previous
+
+            </a>
+
+        </li>
+
+        {% endif %}
+
+        {% for page_num in pagination.iter_pages() %}
+
+            {% if page_num %}
+
+                <li class="page-item {% if page_num == pagination.page %}active{% endif %}">
+
+                    <a class="page-link"
+                       href="{{ url_for('trades.trade_list', page=page_num, symbol=request.args.get('symbol'), market=request.args.get('market'), strategy=request.args.get('strategy'), session=request.args.get('session')) }}">
+
+                        {{ page_num }}
+
+                    </a>
+
+                </li>
+
+            {% endif %}
+
+        {% endfor %}
+
+        {% if pagination.has_next %}
+
+        <li class="page-item">
+
+            <a class="page-link"
+               href="{{ url_for('trades.trade_list', page=pagination.next_num, symbol=request.args.get('symbol'), market=request.args.get('market'), strategy=request.args.get('strategy'), session=request.args.get('session')) }}">
+
+                Next →
+
+            </a>
+
+        </li>
+
+        {% endif %}
+
+    </ul>
+
+</nav>
 
 <a href="/dashboard" class="btn btn-primary">
 
